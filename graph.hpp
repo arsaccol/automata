@@ -36,32 +36,19 @@ namespace graph
 
 
 
-			const id_t& get_id() const
-			{ return id; }
+			const id_t& get_id() const;
 
-			data_t& get_data() 
-			{ return data; }
+			data_t& get_data(); 
 
-			adj_list_t& get_adj_nodes()
-			{ return adj_nodes; }
+			adj_list_t& get_adj_nodes();
 			
-			void set_id(id_t id)
-			{ id = std::move(id); }
+			void set_id(id_t id);
 
-			void set_data(data_t data)
-			{
-				data = std::move(data);
-			}
+			void set_data(data_t data);
 
-			void add_adjacent_node(node_t& node, weight_t weight)
-			{
-				node_t* node_ptr = &node;
+			void add_adjacent_node(node_t& node, weight_t weight);
 
-				adj_nodes.push_back(std::make_pair(node_ptr, weight));
-			}
-
-			bool has_id(const id_t& lookup_id) const
-			{ return lookup_id == id; }
+			bool has_id(const id_t& lookup_id) const;
 		
 		private:
 			id_t id;
@@ -117,5 +104,7 @@ namespace graph
 
 	};
 }
+
+#include "graph.inl"
 
 #endif // GRAPH_HPP

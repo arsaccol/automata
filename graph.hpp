@@ -29,12 +29,7 @@ namespace graph
 			typedef std::list< std::pair< node_t*, weight_t > >
 				adj_list_t;
 			
-			node_t(id_t id, data_t data)
-				:	id(std::move(id))
-				,	data(std::move(data)) 
-			{ std::cout << "rvalue" << std::endl; }
-
-
+			node_t(id_t id, data_t data);
 
 			const id_t& get_id() const;
 

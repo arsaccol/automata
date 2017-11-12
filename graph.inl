@@ -1,5 +1,10 @@
-//template <typename id_t, typename data_t, typename weight_t>
-//using Node = typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t;
+
+// node_t::node_t
+template <typename id_t, typename data_t, typename weight_t>
+graph::adj_graph_t<id_t, data_t, weight_t>::node_t::node_t(id_t id, data_t data)
+	:	id(std::move(id))
+	,	data(std::move(data))
+{}
 
 // node_t::get_id
 template <typename id_t, typename data_t, typename weight_t>
@@ -60,6 +65,7 @@ bool graph::adj_graph_t<id_t, data_t, weight_t>::node_t::has_id(const id_t& look
 {
 	return lookup_id == id;
 }
+
 /*
 template <typename id_t, typename data_t, typename weight_t>
 graph::adj_graph_t<id_t, data_t, weight_t>::node_t

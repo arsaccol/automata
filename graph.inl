@@ -66,15 +66,66 @@ bool graph::adj_graph_t<id_t, data_t, weight_t>::node_t::has_id(const id_t& look
 	return lookup_id == id;
 }
 
-/*
+/////////////////////////////////////////////////////////////////
+// graph_t function definitions
+/////////////////////////////////////////////////////////////////
+
+// adj_graph_t::adj_graph_t
 template <typename id_t, typename data_t, typename weight_t>
-graph::adj_graph_t<id_t, data_t, weight_t>::node_t
+graph::adj_graph_t<id_t, data_t, weight_t>::adj_graph_t(bool directed)
+	:	directed(directed)
+{}
+
+// adj_graph_t::add_node
 template <typename id_t, typename data_t, typename weight_t>
-graph::adj_graph_t<id_t, data_t, weight_t>::node_t
+void graph::adj_graph_t<id_t, data_t, weight_t>::add_node(id_t id, data_t data)
+{
+	if(nodes.count(id) == 0)
+		nodes.emplace(id, node_t(id, data));
+}
+
+// adj_graph_t::add_edge
 template <typename id_t, typename data_t, typename weight_t>
-graph::adj_graph_t<id_t, data_t, weight_t>::node_t
+void graph::adj_graph_t<id_t, data_t, weight_t>::add_edge(
+
+		id_t origin_id, id_t destination_id, weight_t weight
+	)
+{
+	if(nodes.count(origin_id) && nodes.count(destination_id))
+	{
+		nodes.at(origin_id).get_adj_nodes().push_back
+		(
+			std::make_pair( &(get_node(destination_id)), weight)
+		);
+
+		// if graph is undirected, reflect the adjacency
+		if(!directed)
+			nodes.at(destination_id).get_adj_nodes().push_back
+			(
+				 std::make_pair( &(get_node(origin_id)), weight)
+			);
+	}
+}
+
+//adj_graph_t::get_node
 template <typename id_t, typename data_t, typename weight_t>
-graph::adj_graph_t<id_t, data_t, weight_t>::node_t
+typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t& 
+	graph::adj_graph_t<id_t, data_t, weight_t>::get_node(id_t id)
+{
+	return nodes.at(id);
+}
+
+// adj_graph_t::get_node_map
 template <typename id_t, typename data_t, typename weight_t>
-graph::adj_graph_t<id_t, data_t, weight_t>::node_t
-*/
+std::map<id_t, typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t>&
+	graph::adj_graph_t<id_t, data_t, weight_t>::get_node_map()
+{
+	return nodes;
+}
+
+// adj_graph_t::is_directed
+template <typename id_t, typename data_t, typename weight_t>
+bool graph::adj_graph_t<id_t, data_t, weight_t>::is_directed()
+{
+	return is_directed;
+}

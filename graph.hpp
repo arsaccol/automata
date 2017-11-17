@@ -57,6 +57,7 @@ namespace graph
 		void add_edge(id_t origin_id, id_t destination_id, weight_t weight = 1);
 
 		node_t& get_node(id_t id);
+		node_t& operator[](id_t id);
 
 		std::map<id_t, node_t>& get_node_map();
 

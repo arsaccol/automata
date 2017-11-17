@@ -115,6 +115,14 @@ typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t&
 	return nodes.at(id);
 }
 
+//adj_graph_t::operator[]
+template <typename id_t, typename data_t, typename weight_t>
+typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t&
+	graph::adj_graph_t<id_t, data_t, weight_t>::operator[](id_t id)
+{
+	return nodes.at(id);
+}
+
 // adj_graph_t::get_node_map
 template <typename id_t, typename data_t, typename weight_t>
 std::map<id_t, typename graph::adj_graph_t<id_t, data_t, weight_t>::node_t>&

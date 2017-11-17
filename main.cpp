@@ -22,6 +22,8 @@ int main()
 	graph.add_edge(5, 4);
 	graph.add_edge(6, 6);
 
+	std::cout << "Data at graph[5]: " << graph[5].get_data() << std::endl;
+
 
 	//std::cout << graph.get_node(0).get_id() << std::endl;
 	//std::cout << graph.get_node(1).get_data() << std::endl;
